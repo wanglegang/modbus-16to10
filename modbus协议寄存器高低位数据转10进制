@@ -1,0 +1,26 @@
+unsigned char comdata[8];
+int mark = 0;
+void setup() {
+  Serial.begin(9600);
+}
+void loop() {
+  int i = 0;
+  while (Serial.available() > 0 )
+  {
+    comdata[i] = char(Serial.read());
+    delay(2); mark = 1;   i++;
+  }
+
+  if (mark == 1)
+  {//数据在返回数据中的第3,4位
+    unsigned int temp = comdata[3] << 8 | comdata[4];
+    Serial.print(temp);
+    delay(2);
+    temp = 0;
+  }
+  mark = 0; //清空必须有，否则不停的发数据
+  for (int x0 = 0; x0 < 7; x0++)
+  {
+    comdata[x0] = 0;
+  }
+}
