@@ -24,3 +24,8 @@ void loop() {
     comdata[x0] = 0;
   }
 }
+
+发送
+01 03 00 1a 00 01 a5 cd
+回复
+01 03 02 FF AC F9 C9
